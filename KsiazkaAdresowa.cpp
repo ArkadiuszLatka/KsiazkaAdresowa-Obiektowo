@@ -1,0 +1,125 @@
+#include "KsiazkaAdresowa.h"
+
+int KsiazkaAdresowa::pobierzIdZalogowanegoUzytkownika()
+{
+    return uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika();
+}
+bool KsiazkaAdresowa::czyUzytkownikJestZalogowany()
+{
+    uzytkownikMenedzer.czyUzytkownikJestZalogowany();
+}
+ void KsiazkaAdresowa::rejestracjaUzytkownika()
+ {
+     uzytkownikMenedzer.rejestracjaUzytkownika();
+ };
+void KsiazkaAdresowa:: wypiszWszystkichUzytkownikow()
+{
+    uzytkownikMenedzer.wypiszWszystkichUzytkownikow();
+}
+void KsiazkaAdresowa::logowanieUzytkownika() {
+    uzytkownikMenedzer.logowanieUzytkownika();
+    if (uzytkownikMenedzer.czyUzytkownikJestZalogowany()) {
+        adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+    }
+}
+
+void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika()
+{
+    uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
+}
+
+void KsiazkaAdresowa::wylogowanieUzytkownika()
+{
+    uzytkownikMenedzer.wylogowanieUzytkownika();
+    delete adresatMenedzer;
+    adresatMenedzer = NULL;
+}
+
+void KsiazkaAdresowa::dodajAdresata()
+{
+    if (uzytkownikMenedzer.czyUzytkownikJestZalogowany())
+    {
+        adresatMenedzer->dodajAdresata();
+    }
+    else
+    {
+        cout << "Zaloguj sie, by dodac adresata." << endl;
+        system("pause");
+    }
+}
+void KsiazkaAdresowa::wyswietlWszystkichAdresatow()
+{
+    adresatMenedzer->wyswietlWszystkichAdresatow();
+}
+void KsiazkaAdresowa::wczytajAdresatowZPliku()
+{
+    adresatMenedzer->wczytajAdresatowZPliku(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+}
+void KsiazkaAdresowa::wybierzOpcjeZMenuGlownego() {
+    system("cls");
+    cout << "    >>> MENU  GLOWNE <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "1. Rejestracja" << endl;
+    cout << "2. Logowanie" << endl;
+    cout << "9. Koniec programu" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Twoj wybor: ";
+    switch (MetodyPomocnicze::wczytajZnak()) {
+    case '1':
+        rejestracjaUzytkownika();
+        break;
+    case '2':
+        logowanieUzytkownika();
+        break;
+    case '9':
+        exit(0);
+        break;
+    default:
+        cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+        system("pause");
+        break;
+    }
+
+}
+void KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika() {
+    system("cls");
+    cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "1. Dodaj adresata" << endl;
+    cout << "2. Wyszukaj po imieniu" << endl;
+    cout << "3. Wyszukaj po nazwisku" << endl;
+    cout << "4. Wyswietl adresatow" << endl;
+    cout << "5. Usun adresata" << endl;
+    cout << "6. Edytuj adresata" << endl;
+    cout << "---------------------------" << endl;
+    cout << "7. Zmien haslo" << endl;
+    cout << "8. Wyloguj sie" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Twoj wybor: ";
+    switch (MetodyPomocnicze::wczytajZnak()) {
+    case '1':
+        dodajAdresata();
+        break;
+    case '2':
+        //wyszukajAdresatowPoImieniu();
+        break;
+    case '3':
+        //wyszukajAdresatowPoNazwisku();
+        break;
+    case '4':
+        wyswietlWszystkichAdresatow();
+        break;
+    case '5':
+        //usunAdresata();
+        break;
+    case '6':
+        //edytujAdresata();
+        break;
+    case '7':
+        zmianaHaslaZalogowanegoUzytkownika();
+        break;
+    case '8':
+        wylogowanieUzytkownika();
+        break;
+    }
+}

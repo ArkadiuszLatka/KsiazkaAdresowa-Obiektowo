@@ -38,6 +38,9 @@ public:
     void wylogowanieUzytkownika();
     void wczytajAdresatowZPliku();
     void dodajAdresata();
+
     void wyswietlWszystkichAdresatow();
+    void wyszukajAdresatowPoImieniu();
+    void wyszukajAdresatowPoNazwisku();
 };
 #endif

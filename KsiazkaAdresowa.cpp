@@ -55,3 +55,11 @@ void KsiazkaAdresowa::wczytajAdresatowZPliku()
 {
     adresatMenedzer->wczytajAdresatowZPliku(uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
 }
+void KsiazkaAdresowa::wyszukajAdresatowPoImieniu()
+{
+    adresatMenedzer->wyszukajAdresatowPoImieniu();
+}
+void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku()
+{
+    adresatMenedzer->wyszukajAdresatowPoNazwisku();
+}

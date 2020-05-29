@@ -63,3 +63,8 @@ void KsiazkaAdresowa::wyszukajAdresatowPoNazwisku()
 {
     adresatMenedzer->wyszukajAdresatowPoNazwisku();
 }
+int KsiazkaAdresowa::usunAdresata()
+{
+    adresatMenedzer->usunAdresata();
+
+}

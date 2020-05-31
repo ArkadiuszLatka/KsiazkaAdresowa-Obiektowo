@@ -33,6 +33,7 @@ public:
     int pobierzIdOstatniegoAdresata();
     string zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(Adresat adresat);
     void usunWybranegoAdresataZPliku(int idAdresata);
+    void edytujAdresataWPliku(Adresat adresat);
 };
 
 

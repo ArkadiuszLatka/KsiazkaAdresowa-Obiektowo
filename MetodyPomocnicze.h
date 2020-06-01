@@ -18,7 +18,7 @@ public:
     static int konwersjaStringNaInt(string liczba);
     static char wczytajZnak();
     static int wczytajLiczbeCalkowita();
-    static bool czyPlikJestPusty(fstream &plikTekstowy);
+
 
 };
 #endif // METODYPOMOCNICZE_H

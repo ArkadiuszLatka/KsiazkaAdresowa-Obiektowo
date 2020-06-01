@@ -15,20 +15,19 @@ using namespace std;
 class AdresatMenedzer
 {
     PlikZAdresatami plikZAdresatami;
-    const int idZalogowanegoUzytkownika;
+    const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
     int idOstatniegoAdresata;
     vector <Adresat> adresaci;
     Adresat podajDaneNowegoAdresata();
     void wyswietlDaneAdresata(Adresat adresat);
     void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
 
-
-
-
 public:
-  AdresatMenedzer(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika) : plikZAdresatami(nazwaPlikuZAdresatami), idZalogowanegoUzytkownika(idZalogowanegoUzytkownika) {
-        adresaci = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
-    };
+    AdresatMenedzer(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika) :
+        plikZAdresatami(nazwaPlikuZAdresatami), ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika)
+        {
+        adresaci = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(ID_ZALOGOWANEGO_UZYTKOWNIKA);
+        };
     void dodajAdresata();
     void wczytajAdresatowZPliku(int idZalogowanegoUzytkownika);
     void wyswietlWszystkichAdresatow();

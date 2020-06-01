@@ -8,8 +8,9 @@
 
 #include "Adresat.h"
 #include "MetodyPomocnicze.h"
+#include "PlikTekstowy.h"
 
-class PlikZAdresatami
+class PlikZAdresatami : public PlikTekstowy
 {
     int idOstatniegoAdresata;
     const string nazwaPlikuZAdresatami;
@@ -18,16 +19,12 @@ class PlikZAdresatami
     Adresat pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami);
     int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
     string pobierzLiczbe(string tekst, int pozycjaZnaku);
-    bool czyPlikJestPusty(fstream &plikTekstowy);
     void usunOdczytywanyPlik(string nazwaPlikuZRozszerzeniem);
     void zmienNazweTymczasowegoPlikuNaNazweOdczytywanegoPliku(string nazwaTymczasowegoPlikuZRozszerzeniem, string nazwaPlikuZRozszerzeniem);
 
 public:
-    PlikZAdresatami(string NAZWAPLIKUZADRESATAMI) :
-        nazwaPlikuZAdresatami(NAZWAPLIKUZADRESATAMI) {
-        idOstatniegoAdresata = 0;
+    PlikZAdresatami(string nazwaPliku) : PlikTekstowy(nazwaPliku) {};
 
-    };
     vector<Adresat> wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
     void dopiszAdresataDoPliku(Adresat adresat);
     int pobierzIdOstatniegoAdresata();

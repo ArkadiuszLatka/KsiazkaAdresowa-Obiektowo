@@ -168,7 +168,7 @@ int AdresatMenedzer::usunAdresata()
             znak = MetodyPomocnicze::wczytajZnak();
             if (znak == 't')
             {
-                plikZAdresatami.usunWybranegoAdresataZPliku(idUsuwanegoAdresata);
+                plikZAdresatami.usunWybranegoAdresataZPliku(idUsuwanegoAdresata,idUsuwanegoAdresata);
                 adresaci.erase(itr);
                 cout << endl << endl << "Szukany adresat zostal USUNIETY" << endl << endl;
                 system("pause");

@@ -21,7 +21,7 @@ class PlikZAdresatami : public PlikTekstowy
     string pobierzLiczbe(string tekst, int pozycjaZnaku);
     void usunOdczytywanyPlik(string nazwaPlikuZRozszerzeniem);
     void zmienNazweTymczasowegoPlikuNaNazweOdczytywanegoPliku(string nazwaTymczasowegoPlikuZRozszerzeniem, string nazwaPlikuZRozszerzeniem);
-
+    void pobierzZPlikuIdOstatniegoAdresata();
 public:
     PlikZAdresatami(string nazwaPliku) : PlikTekstowy(nazwaPliku) {};
 
@@ -29,8 +29,9 @@ public:
     void dopiszAdresataDoPliku(Adresat adresat);
     int pobierzIdOstatniegoAdresata();
     string zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(Adresat adresat);
-    void usunWybranegoAdresataZPliku(int idAdresata);
+    void usunWybranegoAdresataZPliku(int idAdresata,int idUsuwanegoAdresata);
     void edytujAdresataWPliku(Adresat adresat);
+    void wczytajIdOstatniegoAdresata(int Id);
 };
 
 

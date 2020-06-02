@@ -32,6 +32,7 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(i
         idOstatniegoAdresata = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
         return adresaci;
     }
+
     else {
         idOstatniegoAdresata = 0;
         return adresaci;
@@ -147,10 +148,11 @@ string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKresk
     return liniaZDanymiAdresata;
 }
 
-void PlikZAdresatami::usunWybranegoAdresataZPliku(int idAdresata)
+void PlikZAdresatami::usunWybranegoAdresataZPliku(int idAdresata,int idUsuwanegoAdresata)
 {
     int numerLiniiWPlikuTekstowym = 1;
     int numerUsuwanejLinii =0;
+
     string daneJednegoAdresataOddzielonePionowymiKreskami = "";
     fstream plikTekstowy,tymczasowyPlikTekstowy;
     string nazwaTymczasowegoPlikuZAdresatami = "plikTymczasowy.txt";
@@ -184,6 +186,10 @@ void PlikZAdresatami::usunWybranegoAdresataZPliku(int idAdresata)
         zmienNazweTymczasowegoPlikuNaNazweOdczytywanegoPliku(nazwaTymczasowegoPlikuZAdresatami, pobierzNazwePliku());
 
     }
+    if (idUsuwanegoAdresata == idOstatniegoAdresata) {
+        pobierzZPlikuIdOstatniegoAdresata();
+    }
+
 }
 void PlikZAdresatami::usunOdczytywanyPlik(string nazwaPlikuZRozszerzeniem)
 {
@@ -241,4 +247,26 @@ void PlikZAdresatami::edytujAdresataWPliku(Adresat adresat)
         usunOdczytywanyPlik(pobierzNazwePliku());
         zmienNazweTymczasowegoPlikuNaNazweOdczytywanegoPliku(nazwaTymczasowegoPlikuZAdresatami,pobierzNazwePliku());
     }
+}
+void PlikZAdresatami::pobierzZPlikuIdOstatniegoAdresata() {
+    string daneJednegoAdresataOddzielonePionowymiKreskami = "";
+    string daneOstaniegoAdresataWPliku = "";
+    fstream plikTekstowy;
+    plikTekstowy.open(pobierzNazwePliku().c_str(), ios::in);
+
+    if (plikTekstowy.good() == true)
+    {
+        while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {}
+            daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
+            plikTekstowy.close();
+    }
+    else
+        cout << "Nie udalo sie otworzyc pliku i wczytac danych." << endl;
+
+    if (daneOstaniegoAdresataWPliku != "")
+    {
+        idOstatniegoAdresata = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
+    }
+    else
+        idOstatniegoAdresata = 0;
 }
